@@ -1,4 +1,3 @@
 <?php
-    phpinfo();
-
-    ////qqqqqq;
+    $name = 'Nikita';
+    $name .= ' Nikitin';
