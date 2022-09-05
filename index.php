@@ -1,5 +1,10 @@
 <?php
-    $name = 'Nikita';
+    /*$name = 'Nikita';
     $name .= ' Nikitin';
 
-    echo $name;
+    echo $name;*/
+
+ $developer = 'Vasya Pupkin';
+ $a = 10 + 15;
+
+ echo 'Vasya Pupkin is strong at maths!';
