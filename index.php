@@ -15,7 +15,7 @@
                 if($red >= 0 && $red <= 255)
                     $this->red = $red;
                 else
-                    throw new InvalidArgumentException('Значеня красного не в діапазоні! (0-255)');
+                    throw new InvalidArgumentException('Value out of range! (0-255)');
             }
             else
                 $this->red = 0;
@@ -30,7 +30,7 @@
                 if($green >= 0 && $green <= 255)
                     $this->green = $green;
                 else
-                    throw new InvalidArgumentException('Значеня зеленого не в діапазоні! (0-255)');
+                    throw new InvalidArgumentException('Value out of range! (0-255)');
             }
             else
                 $this->green = 0;
@@ -45,7 +45,7 @@
                 if($blue >= 0 && $blue <= 255)
                     $this->blue = $blue;
                 else
-                    throw new InvalidArgumentException('Значеня синього не в діапазоні! (0-255)');
+                    throw new InvalidArgumentException('Value out of range! (0-255)');
             }
             else
                 $this->blue = 0;
