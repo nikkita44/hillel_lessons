@@ -1,87 +1,117 @@
 <?php
-    class Color{
-        private $red;
-        private $green;
-        private $blue;
 
-        public function __construct($red, $green, $blue){
-            $this->setRed($red);
-            $this->setGreen($green);
-            $this->setBlue($blue);
-        }
+require_once __DIR__. '/vendor/autoload.php';
+require_once __DIR__.'/config/database.php';
 
-        private function setRed($red){
-            if(is_int($red) || is_float($red)){
-                if($red >= 0 && $red <= 255)
-                    $this->red = $red;
-                else
-                    throw new InvalidArgumentException('Value out of range! (0-255)');
-            }
-            else
-                $this->red = 0;
-        }
+use Nico44\Models\Category;
+use Nico44\Models\Post;
+use Nico44\Models\Tag;
 
-        public function getRed(){
-            return $this->red;
-        }
+/* 1
+$category1 = new Category();
+$category1->title = "Blog";
+$category1->slug = "Category for blogs..";
+$category1->save();
 
-        private function setGreen($green){
-            if(is_int($green) || is_float($green)){
-                if($green >= 0 && $green <= 255)
-                    $this->green = $green;
-                else
-                    throw new InvalidArgumentException('Value out of range! (0-255)');
-            }
-            else
-                $this->green = 0;
-        }
+$category2 = new Category();
+$category2->title = "Sci-fi";
+$category2->slug = "Category for science fictions..";
+$category2->save();
 
-        public function getGreen(){
-            return $this->green;
-        }
+$category3 = new Category();
+$category3->title = "Story";
+$category3->slug = "Category for stories..";
+$category3->save();
 
-        private function setBlue($blue){
-            if(is_int($blue) || is_float($blue)){
-                if($blue >= 0 && $blue <= 255)
-                    $this->blue = $blue;
-                else
-                    throw new InvalidArgumentException('Value out of range! (0-255)');
-            }
-            else
-                $this->blue = 0;
-        }
+$category4 = new Category();
+$category4->title = "Advice";
+$category4->slug = "Category for advices..";
+$category4->save();
 
-        public function getBlue(){
-            return $this->blue;
-        }
+$category5 = new Category();
+$category5->title = "Comedy";
+$category5->slug = "Category for comedies..";
+$category5->save();
+*/
 
-        public function equals(Color $another_color){
-            if($this->red == $another_color->red && $this->green == $another_color->green && $this->blue == $another_color->blue)
-                return true;
-            else
-                return false;
-        }
+/* 2
+$category = Category::find(5);
+$category->title = "Stories & Fanfics";
+$category->slug = "Category for stories and fanfics..";
+$category->save();
+*/
 
-        public static function random(){
-            $red = rand(0, 255);
-            $green = rand(0, 255);
-            $blue = rand(0, 255);
-            return new Color($red, $green, $blue);
-        }
+/* 3
+$category = Category::find(7);
+$category->delete();
+*/
 
-        public function mix(Color $another_color){
-            $mixed_red = ($this->red + $another_color->red)/2;
-            $mixed_green = ($this->green + $another_color->green)/2;
-            $mixed_blue = ($this->blue + $another_color->blue)/2;
+/* 4
+function postCreation($title, $slug, $body, $cat_id)
+{
+    $post = new Post();
+    $post->title = $title;
+    $post->slug = $slug;
+    $post->body = $body;
+    $post->category_id = $cat_id;
+    $post->save();
+}
 
-            return new Color($mixed_red, $mixed_green, $mixed_blue);
-        }
-    }
+postCreation("Blog #1", "Blog post", "Some post.. kinda blog..", 3);
+postCreation("Advice #1", "Advice post", "Some new advices", 6);
+postCreation("Blog #2", "Blog post", "New blog post", 3);
+postCreation("Fanfic #1", "Fanfic post", "Fresh fanfic", 5);
+postCreation("Fanfic #2", "Fanfic post", "Fresh fanfic X2", 5);
+postCreation("Blog #3", "Blog post", "Extra blog", 3);
+postCreation("Story #2", "Story post", "Some story", 5);
+postCreation("Sci-Fi #1", "Sci-Fi post", "Smart staff", 4);
+postCreation("Blog #4", "Blog post", "One more blog", 3);
+postCreation("Sci-Fi #2", "Sci-Fi post", "+sci-fi", 4);
+*/
 
-    $color1 = new Color(125, 134, 228);
-    $color2 = new Color(12, 13, 22);
+/* 5
+$post = Post::find(24);
+$post->title = 'Advice #2';
+$post->slug = 'Advice Post';
+$post->body = 'Some new advices';
+$post->category_id = 6;
+$post->save();
+*/
 
-    /*var_dump($color1->equals($color2));*/
-    /*var_dump(Color::random());*/
-    var_dump($color1->mix($color2));
+/* 6
+$post = Post::find(27);
+$post->delete();
+*/
+
+/* 7
+function tagCreation($title, $slug)
+{
+    $tag = new Tag();
+    $tag->title = $title;
+    $tag->slug = $slug;
+    $tag->save();
+}
+
+tagCreation('Animals', 'Tag about animals');
+tagCreation('News', 'Tag about news');
+tagCreation('Sport', 'Tag about sport');
+tagCreation('Education', 'Tag about education');
+tagCreation('Films', 'Tag about films');
+tagCreation('Superheroes', 'Tag about superheroes');
+tagCreation('Music', 'Tag about music');
+tagCreation('Medicine', 'Tag about medicine');
+tagCreation('IT', 'Tag about IT (Top!!!)');
+tagCreation('Technologies', 'Tag about technologies');
+*/
+
+/* 8
+$posts = Post::all();
+foreach($posts as $post){
+    $tag_a = rand(14, 23);
+    $tag_b = rand(14, 23);
+    $tag_c = rand(14, 23);
+    $post->tags()->attach([$tag_a, $tag_b, $tag_c]);
+}
+*/
+
 
