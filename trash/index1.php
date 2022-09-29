@@ -1,7 +1,7 @@
 <?php
 
-require_once __DIR__. '/vendor/autoload.php';
-require_once __DIR__.'/config/database.php';
+require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/config/database.php';
 
 use Nico44\Models\Category;
 use Nico44\Models\Post;
@@ -35,15 +35,15 @@ $category5->save();
 */
 
 /* 2
-$category = Category::find(5);
-$category->title = "Stories & Fanfics";
-$category->slug = "Category for stories and fanfics..";
-$category->save();
+$category2 = Category::find(5);
+$category2->title = "Stories & Fanfics";
+$category2->slug = "Category for stories and fanfics..";
+$category2->save();
 */
 
 /* 3
-$category = Category::find(7);
-$category->delete();
+$category2 = Category::find(7);
+$category2->delete();
 */
 
 /* 4
@@ -86,10 +86,10 @@ $post->delete();
 /* 7
 function tagCreation($title, $slug)
 {
-    $tag = new Tag();
-    $tag->title = $title;
-    $tag->slug = $slug;
-    $tag->save();
+    $tag2 = new Tag();
+    $tag2->title = $title;
+    $tag2->slug = $slug;
+    $tag2->save();
 }
 
 tagCreation('Animals', 'Tag about animals');

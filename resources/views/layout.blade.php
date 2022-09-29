@@ -15,6 +15,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/category">Категорії</a>
                         <a class="nav-link" href="/tag">Теги</a>
+                        <a class="nav-link" href="/post">Пости</a>
                     </li>
                 </ul>
             </div>

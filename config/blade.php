@@ -28,4 +28,13 @@ $blade = new Factory(
     $dispatcher
 );
 
+function view($view, $data = [], $mergeData = [])
+{
+    global $blade;
+
+    return new Response(
+        $blade->make($view, $data, $mergeData)->render()
+    );
+}
+
 

@@ -1,8 +1,8 @@
 <?php
 
-require_once __DIR__. '/../../vendor/autoload.php';
-require_once __DIR__.'/../../config/blade.php';
-require_once __DIR__.'/../../config/database.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/../../config/blade.php';
+require_once __DIR__ . '/../../config/database.php';
 
 if(!isset($_GET['id'])){
     throw new Error('incorrect id value');
@@ -13,7 +13,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $category->title = $_POST['title'];
     $category->slug = $_POST['slug'];
     $category->save();
-    header('Location: /category');
+    header('Location: /category2');
 }
 
 /** @var $blade */

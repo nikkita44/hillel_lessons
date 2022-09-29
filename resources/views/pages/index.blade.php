@@ -6,8 +6,8 @@
     {!! $title !!}
 
     {{--<ul>
-        @foreach($categories as $category)
-            <li>Title: {{$category->title}}</li>
+        @foreach($categories as $category2)
+            <li>Title: {{$category2->title}}</li>
         @endforeach
     </ul>--}}
 

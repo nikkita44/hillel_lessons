@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-    <form method="POST">
+    <form action="/tag/store" method="POST">
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
             <input type="text" class="form-control" id="title" name="title">

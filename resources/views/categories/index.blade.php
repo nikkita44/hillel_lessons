@@ -13,14 +13,16 @@
             </tr>
         </thead>
         <tbody>
+
         @forelse($categories as $category)
             <tr>
                 <td>{{$category->title}}</td>
                 <td>{{$category->slug}}</td>
                 <td>{{$category->created_at}}</td>
                 <td>{{$category->updated_at}}</td>
-                <td><a href="/category/delete-category.php?id={{$category->id}}">Видалити</a></td>
-                <td><a href="/category/update-category.php?id={{$category->id}}">Оновити</a></td>
+                <td><a href="/category/{{$category->id}}/destroy">Видалити</a></td>
+                <td><a href="/category/{{$category->id}}/edit">Оновити</a></td>
+                <td><a href="/category/{{$category->id}}/show">Показати</a></td>
             </tr>
         @empty
             <p>Empty</p>
@@ -28,5 +30,5 @@
         </tbody>
     </table>
 
-    <a href="/category/create-category.php" class="btn btn-primary">Додати</a>
+    <a href="/category/create" class="btn btn-primary">Додати</a>
 @endsection
