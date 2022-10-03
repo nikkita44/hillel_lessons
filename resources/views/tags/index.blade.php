@@ -3,6 +3,15 @@
 @section('content')
     {!! $title !!}
 
+    @isset($_SESSION['success'])
+        <div class="alert alert-success" role="alert">
+            {{ $_SESSION['success'] }}
+        </div>
+    @endisset
+    @php
+        unset($_SESSION['success']);
+    @endphp
+
     <table class="table table-striped">
         <thead>
             <tr>

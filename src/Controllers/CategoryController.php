@@ -3,6 +3,7 @@
 namespace Nico44\Controllers;
 use Illuminate\Http\RedirectResponse;
 use Nico44\Models\Category;
+use Illuminate\Validation\Rule;
 
 class CategoryController
 {
@@ -11,8 +12,6 @@ class CategoryController
         $title = '<h1>Categories page</h1>';
         $categories = Category::all();
 
-        /** @var $blade */
-        //echo $blade->make('categories/index', compact('title', 'categories'))->render();
         return view('categories/index', compact('title', 'categories'));
     }
 
@@ -29,19 +28,33 @@ class CategoryController
         $title = '<h1>Categories page</h1>';
         $category = new Category();
 
-        /** @var $blade */
-        //echo $blade->make('categories/adding_form', compact('category'))->render();
         return view('categories/adding_form', compact('title', 'category'));
     }
 
     public function store()
     {
-        $request = request();
+        $data = request()->all();
+        $validator = validator()->make($data, [
+            'title' => [
+                'required',
+                'min: 4',
+                'unique:categories,title'
+            ],
+            'slug' => ['required']
+        ]);
+
+        if($validator->fails()){
+            $_SESSION['errors'] = $validator->errors()->toArray();
+            $_SESSION['data'] = $data;
+            return new RedirectResponse($_SERVER['HTTP_REFERER']);
+        }
 
         $category = new Category();
-        $category->title = $request->input('title');
-        $category->slug = $request->input('slug');
+        $category->title = $data['title'];
+        $category->slug = $data['slug'];
         $category->save();
+
+        $_SESSION['success'] = 'New category was successfully created!';
         return new RedirectResponse('/category');
     }
 
@@ -55,12 +68,31 @@ class CategoryController
 
     public function update()
     {
-        $request = request();
+        $data = request()->all();
 
-        $category = Category::find($request->input('id'));
-        $category->title = $request->input('title');
-        $category->slug = $request->input('slug');
+        $category = Category::find($data['id']);
+        $category->title = $data['title'];
+        $category->slug = $data['slug'];
+
+        $validator = validator()->make($data, [
+            'title' => [
+                'required',
+                'min: 4',
+                //'unique:categories,title',
+                Rule::unique('categories', 'title')->ignore($category->id)
+            ],
+            'slug' => ['required']
+        ]);
+
+        if($validator->fails()){
+            $_SESSION['errors'] = $validator->errors()->toArray();
+            $_SESSION['data'] = $data;
+            return new RedirectResponse($_SERVER['HTTP_REFERER']);
+        }
+
         $category->save();
+
+        $_SESSION['success'] = 'Category was successfully updated!';
         return new RedirectResponse('/category');
     }
 
