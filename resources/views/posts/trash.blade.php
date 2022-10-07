@@ -3,15 +3,6 @@
 @section('content')
     {!! $title !!}
 
-    @isset($_SESSION['success'])
-        <div class="alert alert-success" role="alert">
-            {{ $_SESSION['success'] }}
-        </div>
-    @endisset
-    @php
-        unset($_SESSION['success']);
-    @endphp
-
     <table class="table table-striped">
         <thead>
         <tr>
@@ -35,10 +26,7 @@
                 <td>{{$post->tags->pluck('title')->join(', ')}}</td>
                 <td>{{$post->created_at}}</td>
                 <td>{{$post->updated_at}}</td>
-                <td><a href="/post/{{$post->id}}/destroy">Видалити</a></td>
-                <td><a href="/post/{{$post->id}}/force-delete">Повне видалення</a></td>
-                <td><a href="/post/{{$post->id}}/edit">Оновити</a></td>
-                <td><a href="/post/{{$post->id}}/show">Показати</a></td>
+                <td><a href="/post/{{$post->id}}/restore">Відновити</a></td>
             </tr>
         @empty
             <p>Empty</p>
@@ -46,6 +34,6 @@
         </tbody>
     </table>
 
-    <a href="/post/create" class="btn btn-primary">Додати</a>
-    <a href="/post/trash" class="btn btn-info">Корзина</a>
+    <a href="/post" class="btn btn-info">Список</a>
 @endsection
+

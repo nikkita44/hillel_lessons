@@ -15,6 +15,23 @@ class CategoryController
         return view('categories/index', compact('title', 'categories'));
     }
 
+    public function trash()
+    {
+        $title = '<h1>Categories page</h1>';
+        $categories = Category::onlyTrashed()->get();
+
+        return view('categories/trash', compact('title', 'categories'));
+    }
+
+    public function restore($id)
+    {
+        $category = Category::withTrashed()
+            ->where('id', $id)
+            ->restore();
+
+        return new RedirectResponse('/category');
+    }
+
     public function show($id)
     {
         $title = '<h1>Categories page</h1>';
@@ -100,6 +117,14 @@ class CategoryController
     {
         $category = Category::find($id);
         $category->delete();
+
+        return new RedirectResponse('/category');
+    }
+
+    public function forceDelete($id)
+    {
+        $category = Category::find($id);
+        $category->forceDelete();
 
         return new RedirectResponse('/category');
     }

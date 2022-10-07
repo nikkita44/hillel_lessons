@@ -30,6 +30,7 @@
                 <td>{{$category->created_at}}</td>
                 <td>{{$category->updated_at}}</td>
                 <td><a href="/category/{{$category->id}}/destroy">Видалити</a></td>
+                <td><a href="/category/{{$category->id}}/force-delete">Повне видалення</a></td>
                 <td><a href="/category/{{$category->id}}/edit">Оновити</a></td>
                 <td><a href="/category/{{$category->id}}/show">Показати</a></td>
             </tr>
@@ -40,4 +41,6 @@
     </table>
 
     <a href="/category/create" class="btn btn-primary">Додати</a>
+    <a href="/category/trash" class="btn btn-info">Корзина</a>
+
 @endsection

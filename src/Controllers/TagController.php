@@ -15,6 +15,23 @@ class TagController
         return view('tags/index', compact('title', 'tags'));
     }
 
+    public function trash()
+    {
+        $title = '<h1>Posts page</h1>';
+        $tags = Tag::onlyTrashed()->get();
+
+        return view('tags/trash', compact('title', 'tags'));
+    }
+
+    public function restore($id)
+    {
+        $tag = Tag::withTrashed()
+            ->where('id', $id)
+            ->restore();
+
+        return new RedirectResponse('/tag');
+    }
+
     public function show($id)
     {
         $title = '<h1>Tags page</h1>';
@@ -99,6 +116,15 @@ class TagController
     {
         $tag = Tag::find($id);
         $tag->delete();
+
+        return new RedirectResponse('/tag');
+    }
+
+    public function forceDelete($id)
+    {
+        $tag = Tag::find($id);
+        $tag->posts()->detach();
+        $tag->forceDelete();
 
         return new RedirectResponse('/tag');
     }

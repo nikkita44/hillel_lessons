@@ -17,6 +17,23 @@ class PostController
         return view('posts/index', compact('title', 'posts'));
     }
 
+    public function trash()
+    {
+        $title = '<h1>Posts page</h1>';
+        $posts = Post::onlyTrashed()->get();
+
+        return view('posts/trash', compact('title', 'posts'));
+    }
+
+    public function restore($id)
+    {
+        $post = Post::withTrashed()
+            ->where('id', $id)
+            ->restore();
+
+        return new RedirectResponse('/post');
+    }
+
     public function show($id)
     {
         $title = '<h1>Posts page</h1>';
@@ -117,8 +134,16 @@ class PostController
     public function destroy($id)
     {
         $post = Post::find($id);
-        $post->tags()->detach();
         $post->delete();
+
+        return new RedirectResponse('/post');
+    }
+
+    public function forceDelete($id)
+    {
+        $post = Post::find($id);
+        $post->tags()->detach();
+        $post->forceDelete();
 
         return new RedirectResponse('/post');
     }

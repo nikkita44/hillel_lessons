@@ -30,6 +30,7 @@
                 <td>{{$tag->created_at}}</td>
                 <td>{{$tag->updated_at}}</td>
                 <td><a href="/tag/{{$tag->id}}/destroy">Видалити</a></td>
+                <td><a href="/tag/{{$tag->id}}/force-delete">Повне видалення</a></td>
                 <td><a href="/tag/{{$tag->id}}/edit">Оновити</a></td>
                 <td><a href="/tag/{{$tag->id}}/show">Показати</a></td>
             </tr>
@@ -40,4 +41,5 @@
     </table>
 
     <a href="/tag/create" class="btn btn-primary">Додати</a>
+    <a href="/tag/trash" class="btn btn-info">Корзина</a>
 @endsection

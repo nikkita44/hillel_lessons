@@ -29,6 +29,9 @@ $router->get('/greeting', function(){
 });
 
 $router->get('/category', [CategoryController::class, 'index']);
+$router->get('/category/trash', [CategoryController::class, 'trash']);
+$router->get('/category/{id}/restore', [CategoryController::class, 'restore']);
+$router->get('/category/{id}/force-delete', [CategoryController::class, 'forceDelete']);
 $router->get('/category/{id}/show', [CategoryController::class, 'show']);
 $router->get('/category/create', [CategoryController::class, 'create']);
 $router->post('/category/store', [CategoryController::class, 'store']);
@@ -37,6 +40,9 @@ $router->post('/category/update', [CategoryController::class, 'update']);
 $router->get('/category/{id}/destroy', [CategoryController::class, 'destroy']);
 
 $router->get('/tag', [TagController::class, 'index']);
+$router->get('/tag/trash', [TagController::class, 'trash']);
+$router->get('/tag/{id}/restore', [TagController::class, 'restore']);
+$router->get('/tag/{id}/force-delete', [TagController::class, 'forceDelete']);
 $router->get('/tag/{id}/show', [TagController::class, 'show']);
 $router->get('/tag/create', [TagController::class, 'create']);
 $router->post('/tag/store', [TagController::class, 'store']);
@@ -45,6 +51,9 @@ $router->post('/tag/update', [TagController::class, 'update']);
 $router->get('/tag/{id}/destroy', [TagController::class, 'destroy']);
 
 $router->get('/post', [PostController::class, 'index']);
+$router->get('/post/trash', [PostController::class, 'trash']);
+$router->get('/post/{id}/restore', [PostController::class, 'restore']);
+$router->get('/post/{id}/force-delete', [PostController::class, 'forceDelete']);
 $router->get('/post/{id}/show', [PostController::class, 'show']);
 $router->get('/post/create', [PostController::class, 'create']);
 $router->post('/post/store', [PostController::class, 'store']);
