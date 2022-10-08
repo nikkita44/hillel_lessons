@@ -60,3 +60,5 @@ $router->post('/post/store', [PostController::class, 'store']);
 $router->get('/post/{id}/edit', [PostController::class, 'edit']);
 $router->post('/post/update', [PostController::class, 'update']);
 $router->get('/post/{id}/destroy', [PostController::class, 'destroy']);
+
+
